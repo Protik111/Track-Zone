@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
-import BaseClock from '../components/baseClock/BaseClock';
-import CreateClock from '../components/baseClock/CreateClock';
+import BaseClock from '../components/baseclock/BaseClock';
+import CreateClock from '../components/baseclock/CreateClock';
 
 const App = () => {
     const [baseClock, setBaseClock] = useState({
         time: '',
         timeZone: ''
     });
-
+    console.log(baseClock);
     const { time, timeZone } = baseClock;
 
     return (
         <div>
             {
-                time && timeZone ? <BaseClock></BaseClock> : <CreateClock></CreateClock>
+                time && timeZone ? <BaseClock /> : <CreateClock baseClock={baseClock} setBaseClock={setBaseClock}/>
             }
         </div>
     );
