@@ -13,7 +13,7 @@ const App = () => {
     return (
         <div>
             {
-                time && timeZone ? <BaseClock /> : <CreateClock baseClock={baseClock} setBaseClock={setBaseClock}/>
+                time && timeZone ? <BaseClock baseClock={baseClock} /> : <CreateClock baseClock={baseClock} setBaseClock={setBaseClock}/>
             }
         </div>
     );

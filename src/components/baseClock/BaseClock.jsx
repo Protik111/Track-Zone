@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { formatDistance, subDays, formatRelative, format } from 'date-fns'
 
 const Container = styled.div`
     display: flex;
@@ -8,10 +9,15 @@ const Container = styled.div`
     margin-top: 5rem;
 `
 
-const BaseClock = () => {
+const BaseClock = ({ baseClock }) => {
+    const { time, timeZone } = baseClock;
+
     return (
         <Container>
-            <h1>This is BaseClock</h1>
+            <h2>Your Baseclock Time is {time}</h2>
+            <p>Timezone : {
+                timeZone
+            }</p>
         </Container>
     );
 };

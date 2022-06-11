@@ -42,6 +42,8 @@ const CreateClock = ({ baseClock, setBaseClock }) => {
                         onChange={handleChange}
                         type={'time'}
                         id={'time'}
+                        min="2017-06-01T08:30"
+                        max="2017-06-30T16:30"
                     />
                     <Label for="timeZone">Choose a Timezone</Label>
                     <select name="timeZone" id="timeZone" onChange={handleChange} style={{padding: '0.5rem'}}>
