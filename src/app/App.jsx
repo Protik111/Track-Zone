@@ -7,6 +7,7 @@ import Label from '../components/UI/inputs/Label';
 import Option from '../components/UI/inputs/Option';
 import InputGroup from '../components/shared/forms/InputGroup';
 import Clock from '../components/clocks/Clock';
+import shortid from 'shortid';
 
 const Container = styled.div`
     display: flex;
@@ -25,6 +26,7 @@ const initial2 = {
     id: '',
     localTime: '',
     localZone: '',
+    event: '',
     error: ''
 }
 
@@ -43,15 +45,29 @@ const App = () => {
     }
 
     const hanldeClock = () => {
-
         if (!localTime && !localZone) {
             setLocalClock({ ...localClock, error: 'Please Choose Option and Time' })
         }
         if (localTime && localZone) {
-            setAllClock([...allClock, { ...localClock, id: allClock.length + 1 }]);
+            setAllClock([...allClock, { ...localClock, id: shortid.generate() }]);
             setLocalClock({ ...localClock, error: '' })
         }
     }
+
+    const handleDelete = (id) => {
+        setAllClock(allClock.filter(clock => clock.id !== id));
+    }
+
+    const handleEvent = () => {
+        console.log('clcllll');
+    }
+
+    // const handleEventChange = (e, id) => {
+    //     const targetEvent = allClock.filter(clk => clk.id === id);
+    //     console.log(targetEvent, id);
+    // }
+
+    console.log(localClock);
     return (
         <div>
             {
@@ -86,7 +102,7 @@ const App = () => {
                 <p style={{ color: 'red', margin: '1rem' }}>{error && error}</p>
             </Container>
             {
-                allClock && allClock.length > 0 && allClock.map(clock => <Clock clock={clock}></Clock>)
+                allClock && allClock.length > 0 && allClock.map(clock => <Clock key={clock.id} clock={clock} handleDelete={handleDelete} handleEvent={handleEvent} allClock={allClock} setAllClock={setAllClock} localClock={localClock} setLocalClock={setLocalClock}></Clock>)
             }
         </div>
     );

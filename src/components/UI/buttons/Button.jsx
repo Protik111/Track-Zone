@@ -2,12 +2,12 @@ import styled from 'styled-components';
 
 const Button = styled.button`
     border: none;
-    margin-top: 1rem;
 	outline: none;
-	background: ${(props) => props.bg ? props.bg : '#FF5733'};
+	background: ${(props) => props.bg ? props.bg : '#1d5693'};
 	color: white;
 	border-radius: 0.15rem;
 	padding: 0.5rem 1rem;
+	margin: 1rem 0.5rem;
 	font-size: 0.9rem;
 	font-family: Arial;
 	font-weight: 500;
@@ -15,7 +15,7 @@ const Button = styled.button`
 	text-transform: uppercase;
 	cursor: pointer;
 	&:hover {
-		background: #1c528c;
+		background: ${(props) => props.bg ? props.bg : '#1d5693'};
 	}  
 `;
 export default Button;
