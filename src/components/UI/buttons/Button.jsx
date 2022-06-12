@@ -4,7 +4,7 @@ const Button = styled.button`
     border: none;
     margin-top: 1rem;
 	outline: none;
-	background: #FF5733;
+	background: ${(props) => props.bg ? props.bg : '#FF5733'};
 	color: white;
 	border-radius: 0.15rem;
 	padding: 0.5rem 1rem;
@@ -15,7 +15,7 @@ const Button = styled.button`
 	text-transform: uppercase;
 	cursor: pointer;
 	&:hover {
-		background: #C24327;
+		background: #1c528c;
 	}  
 `;
 export default Button;

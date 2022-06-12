@@ -7,7 +7,7 @@ const Container = styled.div`
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin-top: 5rem;
+    margin-top: ${(props) => props.margin ? props.margin : '1rem'};
 `;
 
 // const ErrorMessage = styled.div`

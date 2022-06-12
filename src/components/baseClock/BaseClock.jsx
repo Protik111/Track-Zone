@@ -7,6 +7,10 @@ const Container = styled.div`
     align-items: center;
     flex-direction: column;
     margin-top: 5rem;
+    border: 1px solid blue;
+    border-radius: 5px;
+    margin: 1rem 10rem;
+    padding: 1rem;
 `
 
 const BaseClock = ({ baseClock }) => {
