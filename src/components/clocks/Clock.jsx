@@ -13,12 +13,18 @@ const Container = styled.div`
     margin: 1rem 10rem;
     padding: 1rem;
     line-height: 1rem;
+    text-align: center;
 `;
 
 const ActionContainer = styled.div`
     display: flex;
     flex-direction: column;
 `;
+
+const ButtonContainer = styled.div`
+    display: flex;
+    align-items: center
+`
 
 const Clock = ({ clock, handleDelete, allClock, setAllClock, localClock, setLocalClock }) => {
     const [events, setEvents] = useState(false);
@@ -35,6 +41,12 @@ const Clock = ({ clock, handleDelete, allClock, setAllClock, localClock, setLoca
         setAllClock([...allClock])
         setEventName('');
     }
+
+    const handleDeleteEvent = (id) => {
+        const targetDeletedEvent = allClock.filter(clc => clc.id === id);
+        targetDeletedEvent[0].event = '';
+        setAllClock([...allClock])
+    }
     console.log(eventName, 'from eventNAme');
     console.log(allClock, 'from allclock');
     console.log(localClock, 'from localClock');
@@ -43,12 +55,14 @@ const Clock = ({ clock, handleDelete, allClock, setAllClock, localClock, setLoca
             <div>
                 <h4>Time: {localTime}</h4>
                 <small>Timezone: {localZone}</small>
-                <p>Event Title: {event}</p>
+                <ButtonContainer>
+                    <p>Event Title: {event ? event : 'Not Created.'}</p>
+                    {event && <Button bg={'red'} padding={'0.3rem 0.5rem'} onClick={() => handleDeleteEvent(id)}>Delete Event</Button>}
+                </ButtonContainer>
             </div>
             <ActionContainer>
-                <Button onClick={() => handleDelete(id)} bg={'#ce2525'}>Delete</Button>
                 {
-                    events ?<> <InputGroup
+                    events ? <><InputGroup
                         value={eventName}
                         label={'Type Event'}
                         name={'eventName'}
@@ -56,12 +70,11 @@ const Clock = ({ clock, handleDelete, allClock, setAllClock, localClock, setLoca
                         type={'text'}
                         id={'event'}
                         onChange={handleEventChange}
-                    /> <Button onClick={() => handleEvent(id)}>Add Events</Button></>: <Button onClick={() => {
-                        setEvents(!events)
-                    }
-                    }>Add Events</Button>
+                    /> <Button onClick={() => handleEvent(id)}>{event ? 'Edit Event' : 'Add Events'}</Button></> :
+                        <Button onClick={() => { setEvents(!events) }}>Add Events</Button>
                 }
             </ActionContainer>
+            <Button onClick={() => handleDelete(id)} bg={'#ce2525'}>Delete Clock</Button>
         </Container>
     );
 };

@@ -6,7 +6,7 @@ const Button = styled.button`
 	background: ${(props) => props.bg ? props.bg : '#1d5693'};
 	color: white;
 	border-radius: 0.15rem;
-	padding: 0.5rem 1rem;
+	padding: ${(props) => props.padding ? props.padding : '0.5rem 1rem'};
 	margin: 1rem 0.5rem;
 	font-size: 0.9rem;
 	font-family: Arial;
