@@ -58,7 +58,7 @@ const TimeDifference = ({ localTime, localZone, time, timeZone }) => {
     }
     useEffect(() => {
         setTime()
-    }, [])
+    }, [localTime, time])
     return (
         <div>
             <small>Time Difference:<b>{timeDifference} hours</b></small>

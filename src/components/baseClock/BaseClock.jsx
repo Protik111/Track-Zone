@@ -28,7 +28,7 @@ const BaseClock = ({ baseClock, setBaseClock }) => {
     const { time, timeZone } = baseClock;
 
     const [h, m, s] = time.split(":");
-    const timeWithAMPM = (h % 12 + 12 * (h % 12 == 0)) + ":" + m + ":" + s;
+    const timeWithAMPM = (h % 12 + 12 * (h % 12 === 0)) + ":" + m + ":" + s;
     const AMPM = h >= 12 ? 'PM' : 'AM';
 
     const handleEdit = () => {
@@ -42,7 +42,7 @@ const BaseClock = ({ baseClock, setBaseClock }) => {
     }
 
     const handleEditClock = () => {
-        setBaseClock({...baseClock});
+        setBaseClock({ ...baseClock });
         setEditClock(false);
     }
     return (
@@ -70,7 +70,7 @@ const BaseClock = ({ baseClock, setBaseClock }) => {
                     <Option value={'EST'}>EST</Option>
                     <Option value={'PST'}>PST</Option>
                 </select>
-            <Button onClick={handleEditClock}>Edit Clock</Button>
+                <Button onClick={handleEditClock}>Edit Clock</Button>
             </>}
             {!editCLock && <Button onClick={handleEdit}>Edit Base Clock</Button>}
         </Container>

@@ -72,8 +72,6 @@ const App = () => {
     const handleFocus = () => {
         setLocalClock({ ...localClock, error: '' })
     }
-
-    console.log(baseClock);
     return (
         <div>
             {

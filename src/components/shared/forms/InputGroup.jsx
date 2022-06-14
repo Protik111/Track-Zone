@@ -10,11 +10,6 @@ const Container = styled.div`
     margin-top: ${(props) => props.margin ? props.margin : '1rem'};
 `;
 
-// const ErrorMessage = styled.div`
-// 	font-size: 0.8rem;
-// 	color: red;
-// `;
-
 const InputGroup = ({
     label,
     name,
