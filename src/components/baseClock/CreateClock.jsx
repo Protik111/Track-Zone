@@ -42,6 +42,7 @@ const CreateClock = ({ baseClock, setBaseClock }) => {
                         onChange={handleChange}
                         type={'time'}
                         id={'time'}
+                        step={'1'}
                         min="2017-06-01T08:30"
                         max="2017-06-30T16:30"
                     />

@@ -21,8 +21,11 @@ const InputGroup = ({
     value,
     placeholder,
     onChange,
+    onBlur,
+    onFocus,
     type,
-    id
+    id,
+    step
 }) => {
     return (
         <Container>
@@ -34,6 +37,9 @@ const InputGroup = ({
                 value={value}
                 onChange={onChange}
                 type={type}
+                onBlur={onBlur}
+                onFocus={onFocus}
+                step={step}
             />
         </Container>
     );

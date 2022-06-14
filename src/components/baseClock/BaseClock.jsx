@@ -16,9 +16,12 @@ const Container = styled.div`
 const BaseClock = ({ baseClock }) => {
     const { time, timeZone } = baseClock;
 
+    const [h, m, s] = time.split(":");
+    const timeWithAMPM = (h % 12 + 12 * (h % 12 == 0)) + ":" + m + ":" + s;
+    const AMPM = h >= 12 ? 'PM' : 'AM'
     return (
         <Container>
-            <h2>Your Baseclock Time is {time}</h2>
+            <h2>Your Baseclock Time is {timeWithAMPM}{AMPM}</h2>
             <p>Timezone : {
                 timeZone
             }</p>

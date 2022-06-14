@@ -24,6 +24,7 @@ const initial = {
 
 const initial2 = {
     id: '',
+    localTitle: '',
     localTime: '',
     localZone: '',
     event: '',
@@ -36,7 +37,7 @@ const App = () => {
     const [allClock, setAllClock] = useState([])
 
     const { time, timeZone } = baseClock;
-    const { localTime, localZone, id, error } = localClock;
+    const { localTime, localZone, id, error, localTitle } = localClock;
 
     const handleChange = (e) => {
         setLocalClock({
@@ -46,11 +47,11 @@ const App = () => {
 
     const hanldeClock = () => {
         if (!localTime && !localZone) {
-            setLocalClock({ ...localClock, error: 'Please Choose Option and Time' })
+            setLocalClock({ ...localClock, error: 'Please Provide Necessay Information' })
         }
-        if (localTime && localZone) {
+        if (localTitle && localTime && localZone) {
             setAllClock([...allClock, { ...localClock, id: shortid.generate() }]);
-            setLocalClock({ ...localClock, error: '' })
+            setLocalClock(initial2)
         }
     }
 
@@ -58,16 +59,17 @@ const App = () => {
         setAllClock(allClock.filter(clock => clock.id !== id));
     }
 
-    const handleEvent = () => {
-        console.log('clcllll');
+    const handleBlur = () => {
+        if (!localTitle) {
+            setLocalClock({ ...localClock, error: 'Title is Requred!' })
+        }
     }
 
-    // const handleEventChange = (e, id) => {
-    //     const targetEvent = allClock.filter(clk => clk.id === id);
-    //     console.log(targetEvent, id);
-    // }
+    const handleFocus = () => {
+        setLocalClock({ ...localClock, error: '' })
+    }
 
-    console.log(localClock);
+    console.log(baseClock);
     return (
         <div>
             {
@@ -77,18 +79,34 @@ const App = () => {
                 {time && timeZone && <h3>
                     Now you can create as many you want.
                 </h3>}
-                {time && timeZone && <><InputGroup
-                    value={localTime}
-                    label={'Choose A Time'}
-                    name={'localTime'}
-                    placeholder={'Pick a Time'}
-                    onChange={handleChange}
-                    type={'time'}
-                    id={'localTime'}
-                    min="2017-06-01T08:30"
-                    max="2017-06-30T16:30"
-                    margin="0.1rem"
-                />
+
+                {time && timeZone && <>
+                    <InputGroup
+                        value={localTitle}
+                        label={'Enter Name of The Clock'}
+                        name={'localTitle'}
+                        placeholder={'Enter a Title'}
+                        onChange={handleChange}
+                        type={'input'}
+                        id={'localTitle'}
+                        margin="0.1rem"
+                        onBlur={handleBlur}
+                        onFocus={handleFocus}
+                    />
+                        <p style={{ color: 'red', marginTop: '1rem' }}>{error && error}</p>
+                    <InputGroup
+                        value={localTime}
+                        label={'Choose A Time'}
+                        name={'localTime'}
+                        placeholder={'Pick a Time'}
+                        onChange={handleChange}
+                        type={'time'}
+                        step={'1'}
+                        id={'localTime'}
+                        min="2017-06-01T08:30"
+                        max="2017-06-30T16:30"
+                        margin="0.1rem"
+                    />
                     <Label htmlFor="localZone">Choose a Timezone</Label>
                     <select name="localZone" id="localZone" onChange={handleChange} style={{ padding: '0.5rem' }}>
                         <Option selected>Please Select a Value</Option>
@@ -99,10 +117,9 @@ const App = () => {
                     </select>
                     <Button onClick={hanldeClock}>Create Clock</Button>
                 </>}
-                <p style={{ color: 'red', margin: '1rem' }}>{error && error}</p>
             </Container>
             {
-                allClock && allClock.length > 0 && allClock.map(clock => <Clock key={clock.id} clock={clock} handleDelete={handleDelete} handleEvent={handleEvent} allClock={allClock} setAllClock={setAllClock} localClock={localClock} setLocalClock={setLocalClock}></Clock>)
+                allClock && allClock.length > 0 && allClock.map(clock => <Clock key={clock.id} clock={clock} handleDelete={handleDelete} allClock={allClock} setAllClock={setAllClock} localClock={localClock} setLocalClock={setLocalClock} baseClock={baseClock}></Clock>)
             }
         </div>
     );
