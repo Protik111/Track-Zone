@@ -47,7 +47,7 @@ const CreateClock = ({ baseClock, setBaseClock }) => {
                         max="2017-06-30T16:30"
                     />
                     <Label htmlFor="timeZone">Choose a Timezone</Label>
-                    <select value={timeZone} name="timeZone" id="timeZone" onChange={handleChange} style={{padding: '0.5rem'}}>
+                    <select name="timeZone" id="timeZone" onChange={handleChange} style={{padding: '0.5rem'}}>
                         <Option selected>Select a Timzone</Option>
                         <Option value={'UTC'}>UTC</Option>
                         <Option value={'GMT'}>GMT</Option>

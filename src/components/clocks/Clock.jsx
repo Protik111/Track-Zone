@@ -1,10 +1,8 @@
 import { useState } from "react";
 import styled from "styled-components";
-// import findDifference from "../../utils/timeDifference";
 import InputGroup from "../shared/forms/InputGroup";
 import Button from "../UI/buttons/Button";
 import TimeDifference from "./TimeDifference";
-// import formatRelative from "date-fns/format";
 
 const Container = styled.div`
     display:flex;
@@ -65,7 +63,7 @@ const Clock = ({ clock, handleDelete, allClock, setAllClock, localClock, setLoca
                 <h5>Time: {timeWithAMPM}{AMPM}</h5>
                 <small>Timezone: {localZone}</small>
                 {/* <small>Timezone: {h}, {localZone}, {time}, {timeZone}</small> */}
-                <TimeDifference h={h} localZone={localZone} time={time} timeZone={timeZone}></TimeDifference>
+                <TimeDifference localTime={localTime} localZone={localZone} time={time} timeZone={timeZone}></TimeDifference>
                 <ButtonContainer>
                     <p>Event Title: {event ? event : 'Not Created.'}</p>
                     {event && <Button bg={'red'} padding={'0.3rem 0.5rem'} onClick={() => handleDeleteEvent(id)}>Delete Event</Button>}

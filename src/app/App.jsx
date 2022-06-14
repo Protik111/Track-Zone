@@ -46,6 +46,10 @@ const App = () => {
     }
 
     const hanldeClock = () => {
+        if (!localTitle) {
+            setLocalClock({ ...localClock, error: 'Title is Requred!' })
+        }
+        
         if (!localTime && !localZone) {
             setLocalClock({ ...localClock, error: 'Please Provide Necessay Information' })
         }
