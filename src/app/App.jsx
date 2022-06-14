@@ -49,7 +49,7 @@ const App = () => {
         if (!localTitle) {
             setLocalClock({ ...localClock, error: 'Title is Requred!' })
         }
-        
+
         if (!localTime && !localZone) {
             setLocalClock({ ...localClock, error: 'Please Provide Necessay Information' })
         }
@@ -77,7 +77,7 @@ const App = () => {
     return (
         <div>
             {
-                time && timeZone ? <BaseClock baseClock={baseClock} /> : <CreateClock baseClock={baseClock} setBaseClock={setBaseClock} />
+                time && timeZone ? <BaseClock baseClock={baseClock} setBaseClock={setBaseClock}/> : <CreateClock baseClock={baseClock} setBaseClock={setBaseClock} />
             }
             <Container>
                 {time && timeZone && <h3>
